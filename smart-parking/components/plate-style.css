@@ -1,0 +1,29 @@
+.plate-card-body {
+    background: radial-gradient(#e5e5e5e5, #ffff, #e5e5e5);
+    padding: 10px;
+  }
+  
+  .plate-card {
+    box-sizing: border-box;
+    min-width: 400px;
+    margin-bottom: 65px;
+  }
+  
+  .plate-card:hover {
+    box-shadow: 5px 10px 20px 1px rgb(0, 0, 0, 0.253) !important;
+  }
+  
+  .overflow {
+    overflow: hidden;
+  }
+  
+  .plate-card-img {
+    height: 230px;
+    transform: scale(1);
+    transition: transform 0.5s ease;
+  }
+  
+  .plate-card-img:hover {
+    transform: scale(1.3);
+  }
+  
