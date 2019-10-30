@@ -1,0 +1,21 @@
+{
+  "name": "smart-parking",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.559.0",
+    "bootstrap": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "next": "9.1.2",
+    "react": "16.11.0",
+    "react-bootstrap": "^1.0.0-beta.14",
+    "react-dom": "16.11.0",
+    "styled-components": "^4.4.1"
+  }
+}
