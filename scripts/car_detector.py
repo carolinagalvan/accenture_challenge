@@ -12,6 +12,7 @@ class car_detector:
         self.COLORS = np.random.uniform(0, 255, size=(len(self.classes), 3))
         self.net = cv2.dnn.readNet(weights_, config_)
         self.use_net = use_net_
+        self.flip_image = False
 
     def get_output_layers(self, net):
     
@@ -38,6 +39,7 @@ class car_detector:
             cap = cv2.VideoCapture(1)
         else:
             cap = cv2.VideoCapture(source_)
+            self.flip_image = True
         
         if (cap.isOpened()== False): 
             print("Error opening video stream or file")
@@ -47,7 +49,9 @@ class car_detector:
             ret, image = cap.read()
             if ret:
                 image = cv2.resize(image, (600, 400))
-                image = cv2.flip(image, +1)
+                
+                if self.flip_image:
+                    image = cv2.flip(image, +1)
 
                 Width = image.shape[1]
                 Height = image.shape[0]

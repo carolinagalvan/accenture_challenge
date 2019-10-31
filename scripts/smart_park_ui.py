@@ -22,7 +22,7 @@ class park_ui:
         return self.panel
 
     def update_license_plate(self, user_plate_):
-        cv2.putText(self.panel, user_plate_, (160, 70), self.font, 1.0, (255, 255, 255), 1)
+        cv2.putText(self.panel, user_plate_, (230, 100), self.font, 1.0, (255, 255, 255), 1)
         return self.panel
 
     def set_pass(self, pass_):
