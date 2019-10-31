@@ -2,6 +2,7 @@ from car_detector import car_detector
 from face_detector import face_detector
 from smart_park_ui import park_ui
 from aws_serv import aws_serv
+from parking_spot_assign import parkingManager
 import configparser
 import datetime
 import argparse
@@ -32,10 +33,15 @@ faceDetector = face_detector(configFile['DATABASE']['databasePath'],
                              configFile['DATABASE']['photoSuffix'])
 gui = park_ui()
 smart_panel = gui.get_ui()
+parkingLot = parkingManager(int(configFile['DATABASE']['numberOfUsers']))
+
 
 while True:
     smart_panel = gui.reset_gui()
     cv2.imshow('Smart-Parking', smart_panel)
+
+    park_diagram = parkingLot.update_image()
+    cv2.imshow('Parking Spaces', park_diagram)
 
     car_roi = carDetector.wait_for_car(configFile['SOURCE']['carDetectSrc'])
     cv2.imshow('ROI', car_roi)
@@ -68,6 +74,7 @@ while True:
         smart_panel = gui.set_pass(False)
     else:
         smart_panel = gui.set_pass(True)
+        parkingLot.assign_spot([user_name, objectName])
 
     cv2.imshow('Smart-Parking', smart_panel)
     
