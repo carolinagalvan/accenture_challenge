@@ -22,7 +22,13 @@ class face_detector:
             self.known_face_encodings.append(face_recognition.face_encodings(j)[0])
 
     def wait_for_face(self, source_):
-        video_capture = cv2.VideoCapture(source_)
+        
+        if source_ == 'camera_laptop':
+            video_capture = cv2.VideoCapture(0)
+        elif source == 'camera_logitech':
+            video_capture = cv2.VideoCapture(1)
+        else:
+            video_capture = cv2.VideoCapture(source_)
 
         face_locations = []
         face_encodings = []

@@ -3,7 +3,7 @@ import numpy as np
 
 class car_detector:
     
-    def __init__(self, config_, weights_, classes_):
+    def __init__(self, config_, weights_, classes_, use_net_):
 
         self.classesclasses = None
         with open(classes_, 'r') as f:
@@ -11,13 +11,13 @@ class car_detector:
         
         self.COLORS = np.random.uniform(0, 255, size=(len(self.classes), 3))
         self.net = cv2.dnn.readNet(weights_, config_)
+        self.use_net = use_net_
 
     def get_output_layers(self, net):
     
         layer_names = net.getLayerNames()
         output_layers = [layer_names[i[0] - 1] for i in net.getUnconnectedOutLayers()]
         return output_layers
-
 
     def draw_prediction(self, img, class_id, confidence, x, y, x_plus_w, y_plus_h):
 
@@ -32,7 +32,13 @@ class car_detector:
         carArea = 0
         lifeCounter = 0
         
-        cap = cv2.VideoCapture(source_)
+        if source_ == 'camera_laptop':
+            cap = cv2.VideoCapture(0)
+        elif source_ == 'camera_logitech':
+            cap = cv2.VideoCapture(1)
+        else:
+            cap = cv2.VideoCapture(source_)
+        
         if (cap.isOpened()== False): 
             print("Error opening video stream or file")
 
@@ -90,12 +96,16 @@ class car_detector:
                         carArea = roi.shape[0] * roi.shape[1]
                         
                 cv2.imshow('License Plate Camera', image)
-                    
-                if carArea >= 42000:
-                    lifeCounter += 1
-                    if lifeCounter == 3:
-                        #cv2.imshow('roi', roi)
-                        break
+                
+                if self.use_net == 'Yes':
+                    if carArea >= 42000:
+                        lifeCounter += 1
+                        if lifeCounter == 3:
+                            #cv2.imshow('roi', roi)
+                            break
+                elif cv2.waitKey(10) & 0xFF == ord('f'):
+                    roi = image
+                    break
             
                 if cv2.waitKey(10) & 0xFF == ord('q'):
                     break
