@@ -33,25 +33,29 @@ const plates = [
         id: 1,
         license: "RTC083A",
         date: "October 30, 2019",
-        photo: "/static/plate1.png"
+        photo: "/static/plate1.png",
+        userPhoto: "/static/user1.jpg"
     },
     {
         id: 2,
         license: "SJU4153",
         date: "October 29, 2019",
-        photo: "/static/plate2.png"
+        photo: "/static/plate2.png",
+        userPhoto: "/static/user2.jpg"
     },
     {
         id: 3,
         license: "RNA513A",
         date: "October 30, 2019",
-        photo: "/static/plate3.png"
+        photo: "/static/plate3.png",
+        userPhoto: "/static/user3.jpg"
     },
     {
         id: 4,
         license: "SST8420",
         date: "October 28, 2019",
-        photo: "/static/plate4.png"
+        photo: "/static/plate4.png",
+        userPhoto: "/static/user3.jpg"
     }
 ];
 
@@ -71,7 +75,6 @@ export default class Plates extends React.Component {
         this.setState({
             plates: nextProps.plates,
         });
-
     }
 
     filterList(event) {
@@ -90,6 +93,7 @@ export default class Plates extends React.Component {
                     license={plate.license}
                     date={plate.date}
                     photo={plate.photo}
+                    userPhoto={plate.userPhoto}
                 />
             </Col>;
         });
