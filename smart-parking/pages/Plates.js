@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import PlateCard from "../components/PlateCard";
-import Search from '../components/Search'
 import { Container, Row, Col } from "react-bootstrap";
 
 const StyledRow = styled(Row)`
@@ -10,6 +9,24 @@ const StyledRow = styled(Row)`
   box-sizing: border-box;
   min-width: 300px;
 `;
+
+const subtitle = {
+    fontSize: "30px",
+    marigin: "auto"
+};
+
+const inputStyle = {
+    border: "0px",
+    borderRadius: "10px",
+    background: "#d4e9ff",
+    maxWidth: "300px",
+    marginLeft: "5px"
+};
+
+const searchStyle = {
+    marginLeft: "60px",
+    marginTop: "40px"
+};
 
 const plates = [
     {
@@ -39,22 +56,54 @@ const plates = [
 ];
 
 export default class Plates extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            plates: plates,
+            result: plates,
+        }
+
+        this.filterList = this.filterList.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            plates: nextProps.plates,
+        });
+
+    }
+
+    filterList(event) {
+        let value = event.target.value;
+        let plates = this.state.plates, result = [];
+        result = plates.filter((plate) => {
+            return plate.license.search(value) != -1;
+        });
+        this.setState({ result: result });
+    }
+
     render() {
+        const plateList = this.state.result.map((plate) => {
+            return <Col className="col-md-4">
+                <PlateCard
+                    license={plate.license}
+                    date={plate.date}
+                    photo={plate.photo}
+                />
+            </Col>;
+        });
+
         return (
             <Container>
-                <Search></Search>
+                <div className="input-group" style={searchStyle}>
+                    <div className="input-group-prepend" >
+                        <p className="lead" style={subtitle}>Search your plate number: </p>
+                    </div>
+                    <input value={this.state.input} type="text" className="form-control" style={inputStyle} onChange={this.filterList} />
+                </div>
                 <StyledRow>
-                    {plates.map(plate => {
-                        return (
-                            <Col className="col-md-4">
-                                <PlateCard
-                                    license={plate.license}
-                                    date={plate.date}
-                                    photo={plate.photo}
-                                />
-                            </Col>
-                        );
-                    })}
+                    {plateList}
                 </StyledRow>
             </Container>
         );

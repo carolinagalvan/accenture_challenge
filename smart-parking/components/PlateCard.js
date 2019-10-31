@@ -29,7 +29,7 @@ const PlateCard = props => {
                 />
             </div>
             <div className="card-body text-dark" style={PlateCardBody}>
-                <h4 className="card-title">{props.license}</h4>
+                <h4 className="card-title"># {props.license}</h4>
                 <p className="card-text text-seconday">{props.date}</p>
             </div>
         </div>
