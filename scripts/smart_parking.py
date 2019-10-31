@@ -1,4 +1,5 @@
 from car_detector import car_detector
+from face_detector import face_detector
 import argparse
 import cv2
 
@@ -15,6 +16,13 @@ ap.add_argument('-s', '--source', required=True,
 args = ap.parse_args()
 
 carDetector = car_detector(args.config, args.weights, args.classes)
-placa = carDetector.wait_for_car(args.source)
-cv2.imshow('ROI', placa)
+faceDetector = face_detector('../user_database/userdatabase_1.csv', 4, '../user_database/', '.jpeg')
+
+car_roi = carDetector.wait_for_car(args.source)
+cv2.imshow('ROI', car_roi)
 cv2.waitKey()
+cv2.destroyAllWindows()
+user_name, user_face = faceDetector.wait_for_face(0)
+cv2.imshow('User', user_face)
+cv2.waitKey()
+cv2.destroyAllWindows()
