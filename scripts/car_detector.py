@@ -89,12 +89,12 @@ class car_detector:
                         roi = image[round(y):round(y+h), round(x):round(x+w)]
                         carArea = roi.shape[0] * roi.shape[1]
                         
-                cv2.imshow("object detection", image)
+                cv2.imshow('License Plate Camera', image)
                     
                 if carArea >= 42000:
                     lifeCounter += 1
                     if lifeCounter == 3:
-                        cv2.imshow('roi', roi)
+                        #cv2.imshow('roi', roi)
                         break
             
                 if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -102,7 +102,8 @@ class car_detector:
             else:
                 break
         cap.release() 
-        cv2.destroyAllWindows()
+        cv2.destroyWindow('License Plate Camera')
+        #cv2.destroyWindow('roi')
         return roi
 
         

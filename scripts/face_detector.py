@@ -95,7 +95,7 @@ class face_detector:
             if name != 'Unknown':
                 if name_life >= 24:
                     video_capture.release()
-                    cv2.destroyAllWindows()
+                    cv2.destroyWindow('Video')
                     return name, frame
                 else:
                     name_life += 1
