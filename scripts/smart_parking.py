@@ -36,4 +36,4 @@ objectName = aws_serv.text_picture(rek_client, image_binary)
 s3_client = aws_serv.new_s3client(access_id, secret_key)
 success = aws_serv.new_object(s3_client, objectName, image_binary, bucket_name)
 if success:
-	print(f'Added {bucketName} to {objectName}')
+	print(f'Added {bucket_name} to {objectName}')
