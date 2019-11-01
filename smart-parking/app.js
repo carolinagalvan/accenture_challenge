@@ -31,9 +31,18 @@ const start = async port => {
     );
 
     app.get('/image/:imageId', function (req, res, next) {
-        var params = { Bucket: 'accchalenge123', Key: req.params.imageId };
+        var params = { Bucket: 'accchallenge123', Key: req.params.imageId };
         s3.getObject(params, function (err, data) {
             res.writeHead(200, { 'Content-Type': 'image/png' });
+            res.write(data.Body, 'binary');
+            res.end(null, 'binary');
+        });
+    });
+
+    app.get('/dataset', function (req, res, next) {
+        var params = { Bucket: 'accchallenge123', Key: 'csv' };
+        s3.getObject(params, function (err, data) {
+            res.writeHead(200, { 'Content-Type': 'text/csv' });
             res.write(data.Body, 'binary');
             res.end(null, 'binary');
         });

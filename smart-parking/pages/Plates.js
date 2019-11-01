@@ -34,21 +34,21 @@ const plates = [
         license: "RTC083A",
         date: "October 30, 2019",
         photo: "/static/plate1.png",
-        userPhoto: "/static/user1.jpg"
+        userPhoto: "/image/RTCO83A"
     },
     {
         id: 2,
         license: "SJU4153",
         date: "October 29, 2019",
         photo: "/static/plate2.png",
-        userPhoto: "/static/user2.jpg"
+        userPhoto: "/static/user1.jpg"
     },
     {
         id: 3,
         license: "RNA513A",
         date: "October 30, 2019",
         photo: "/static/plate3.png",
-        userPhoto: "/static/user3.jpg"
+        userPhoto: "/static/user2.jpg"
     },
     {
         id: 4,

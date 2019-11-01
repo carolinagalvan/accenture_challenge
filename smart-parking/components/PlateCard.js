@@ -15,6 +15,7 @@ const Overf = {
 };
 const UserImg = {
     height: "95px",
+    maxWidth: "100px",
     borderRadius: "30px",
     marginLeft: "15px"
 };
