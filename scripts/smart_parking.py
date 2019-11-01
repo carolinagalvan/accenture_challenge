@@ -74,8 +74,9 @@ while True:
         smart_panel = gui.set_pass(False)
     else:
         smart_panel = gui.set_pass(True)
-        parkingLot.assign_spot([user_name, objectName])
+        parking_spot = parkingLot.assign_spot([user_name, objectName])
 
+    smart_panel = gui.update_parking(parking_spot)
     cv2.imshow('Smart-Parking', smart_panel)
     
     if cv2.waitKey() & 0xFF == ord('q'):
