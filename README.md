@@ -1,5 +1,5 @@
 # Smart-Parking 
-## by Visionaries
+# by Visionaries
 
 Smart Parking es un sistema de administración de estacionamiento inteligente basado en redes neuronales y algoritmos de machine learning que permiten reconocer a los usuarios, ya sea por su cara o utilizando la placa de su vehículo.
 
